@@ -1,5 +1,7 @@
 # vuetify-tiptap-example
 
+Example for integrating vuetify into tiptap https://eager-elion-d7d275.netlify.app/
+
 ## Project setup
 ```
 npm install
