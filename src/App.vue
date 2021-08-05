@@ -1,58 +1,24 @@
 <template>
-  <editor-content :editor="editor" />
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      tiptap + vuetify demo
+    </v-app-bar>
+
+    <v-main>
+      <v-container>
+        <Editor />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import { Editor, EditorContent } from '@tiptap/vue-2'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
-import VueComponent from './Extension.js'
-
+import Editor from "./components/Editor";
 
 export default {
+  name: "App",
   components: {
-    EditorContent,
+    Editor,
   },
-
-  data() {
-    return {
-      editor: null,
-    }
-  },
-
-  mounted() {
-    this.editor = new Editor({
-      extensions: [
-        Document,
-        Paragraph,
-        Text,
-        VueComponent,
-      ],
-      content: `
-        <p>
-          This is a radically reduced version of tiptap. It has support for a document, with paragraphs and text. That’s it. It’s probably too much for real minimalists though.
-        </p>
-        <p>        <vue-component count="0"></vue-component></p>
-                <vue-component count="0"></vue-component>
-        <p>
-          The paragraph extension is not really required, but you need at least one node. Sure, that node can be something different.
-        </p>
-      `,
-    })
-  },
-
-  beforeDestroy() {
-    this.editor.destroy()
-  },
-}
+};
 </script>
-
-<style lang="scss">
-/* Basic editor styles */
-.ProseMirror {
-  > * + * {
-    margin-top: 0.75em;
-  }
-}
-</style>

@@ -1,4 +1,4 @@
-import { Node, mergeAttributes } from "@tiptap/core";
+import { Node, mergeAttributes, nodeInputRule } from "@tiptap/core";
 import { VueNodeViewRenderer } from "@tiptap/vue-2";
 import Component from "./Component.vue";
 
@@ -11,8 +11,8 @@ export default Node.create({
 
   addAttributes() {
     return {
-      count: {
-        default: 0,
+      days: {
+        default: 1,
       },
     };
   },
@@ -31,5 +31,13 @@ export default Node.create({
 
   addNodeView() {
     return VueNodeViewRenderer(Component);
+  },
+
+  addInputRules() {
+    return [
+      nodeInputRule(/in (\d+) day(\s|s)$/, this.type, (match) => ({
+        days: Number(match[1]),
+      })),
+    ];
   },
 });

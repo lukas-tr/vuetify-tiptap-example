@@ -1,6 +1,6 @@
 <template>
   <node-view-wrapper as="span" class="vue-component">
-    <span class="label">Vue Component</span>
+    <v-chip small close @click:close="close">in {{node.attrs.days}} days</v-chip>
   </node-view-wrapper>
 </template>
 
@@ -15,10 +15,8 @@ export default {
   props: nodeViewProps,
 
   methods: {
-    increase() {
-      this.updateAttributes({
-        count: this.node.attrs.count + 1,
-      })
+    close() {
+      this.deleteNode();
     },
   },
 }
